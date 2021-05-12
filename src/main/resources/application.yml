@@ -1,0 +1,38 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: 工具处理
+  servlet:
+    multipart:
+      #是否启用http上传处理0
+      enabled: true
+      #单个文件的大小
+      max-file-size: 10MB
+      #文件总大小
+      max-request-size: 100MB
+
+# ===== 自定义swagger配置 ===== #
+swagger:
+  enable: true
+  application-name: ${spring.application.name}
+  application-version: 1.0
+  application-description: 处理各种效果的API
+  try-host: http://localhost:${server.port}
+
+
+mybatis-plus:
+  mapper-locations:
+    - classpath:/mapper/zuosy/*Mapper.xml
+  type-aliases-package: com.zuosy.common.entity
+  check-config-location: true
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+#日志
+logging:
+  config: classpath:logback.xml
